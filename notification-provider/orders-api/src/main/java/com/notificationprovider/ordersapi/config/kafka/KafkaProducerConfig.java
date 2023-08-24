@@ -1,5 +1,6 @@
 package com.notificationprovider.ordersapi.config.kafka;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.notificationprovider.ordersapi.property.KafkaProperties;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -19,14 +20,13 @@ import java.util.Map;
 public class KafkaProducerConfig {
 
     private final KafkaProperties kafkaProperties;
+    private final ObjectMapper objectMapper;
 
     @Bean
     public <K, V> ProducerFactory<K, V> producerFactory(){
         Map<String,Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
-        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(config);
+        return new DefaultKafkaProducerFactory(config, new StringSerializer(), new JsonSerializer(objectMapper));
     }
 
     @Bean
