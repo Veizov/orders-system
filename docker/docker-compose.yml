@@ -29,7 +29,7 @@ services:
     ports:
       - "8055:8080"
     environment:
-      - KAFKA_CLUSTERS_0_NAME=orders-system
+      - KAFKA_CLUSTERS_0_NAME=orders-system-1
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
     depends_on:
