@@ -42,6 +42,8 @@ services:
       - "5437:5432"
     volumes:
       - "${POSTGRES_DATA_PATH}:/var/lib/postgresql/data"
+      - "./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql"
     environment:
+      POSTGRES_DB: orders_system
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
