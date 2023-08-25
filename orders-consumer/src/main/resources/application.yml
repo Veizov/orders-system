@@ -5,3 +5,17 @@ server:
 spring:
   application:
     name: orders-consumer
+  liquibase:
+    change-log: classpath:db/db.master.xml
+    drop-first: false
+    liquibase-schema: liquibase
+orders:
+  datasource:
+    jdbcUrl: jdbc:postgresql://localhost:5437/orders_system
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  hibernate:
+    show_sql: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
