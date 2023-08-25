@@ -1,7 +1,7 @@
 package com.notificationprovider.ordersapi.controller.v1.store;
 
+import com.notificationprovider.ordersapi.domain.dto.NotFinishedProcessDto;
 import com.notificationprovider.ordersapi.domain.dto.store.StoreOrderDto;
-import com.notificationprovider.ordersapi.exception.KafkaSendEventException;
 import com.notificationprovider.ordersapi.service.ProcessOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +22,7 @@ public class StoreOrdersController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ApiOperation("Process store order")
     @PostMapping({"/{storeId}/orders"})
-    public void processOrder(@PathVariable Integer storeId, @RequestBody StoreOrderDto orderDto) {
-        storeOrderService.processOrder(orderDto, storeId);
+    public NotFinishedProcessDto processOrder(@PathVariable Integer storeId, @RequestBody StoreOrderDto orderDto) {
+        return storeOrderService.processOrder(orderDto, storeId);
     }
 }
