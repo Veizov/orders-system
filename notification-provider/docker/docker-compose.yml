@@ -6,7 +6,7 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - "${PERSISTENT_VOLUME_PATH}:/bitnami"
+      - "${ZOOKEEPER_DATA_PATH}:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
@@ -15,7 +15,7 @@ services:
     ports:
       - '9094:9094'
     volumes:
-      - "${PERSISTENT_VOLUME_PATH}:/bitnami"
+      - "${KAFKA_DATA_PATH}:/bitnami"
     environment:
         - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
         - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
@@ -29,7 +29,7 @@ services:
     ports:
       - "8055:8080"
     environment:
-      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_NAME=orders-system
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
     depends_on:
@@ -37,7 +37,7 @@ services:
       - kafka
   postgres:
     image: postgres:15.4
-    container_name: notification-provider-db
+    container_name: orders-system-db
     ports:
       - "5437:5432"
     volumes:
