@@ -10,10 +10,10 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public abstract class StoreProductMapper extends BaseDtoEventObjectMapper<StoreProduct, StoreProductDto> {
 
-    @Mapping(target = "description", source = "description")
-    @Mapping(target = "externalId", source = "externalId")
-    @Mapping(target = "price", source = "price")
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
+    @Mapping(target = "description", source = "description")
+    @Mapping(target = "price", source = "price")
     @Mapping(target = "quantity", source = "quantity")
     public abstract StoreProduct toEventObject(StoreProductDto dto);
 }

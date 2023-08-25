@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 public class StoreProductDto implements SellableDto {
 
-    private String externalId;
+    private Integer id;
     private String name;
     private String description;
     private BigDecimal price;

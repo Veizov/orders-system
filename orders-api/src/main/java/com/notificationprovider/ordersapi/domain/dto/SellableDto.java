@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface SellableDto {
 
-    String getExternalId();
+    Integer getId();
 
     String getName();
 
