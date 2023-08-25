@@ -31,8 +31,15 @@
         <appender-ref ref="STDOUT" />
     </root>
 
-    <springProfile name="dev">
-        <root level="debug">
+    <springProfile name="local">
+        <root level="info">
+            <appender-ref ref="FILE" />
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <springProfile name="docker">
+        <root level="info">
             <appender-ref ref="FILE" />
             <appender-ref ref="STDOUT" />
         </root>
