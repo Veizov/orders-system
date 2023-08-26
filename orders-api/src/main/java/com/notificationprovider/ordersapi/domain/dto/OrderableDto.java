@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface OrderableDto<P extends SellableDto> {
 
+    Long getId();
+
     LocalDateTime getCreatedDate();
 
     String getShopperEmail();

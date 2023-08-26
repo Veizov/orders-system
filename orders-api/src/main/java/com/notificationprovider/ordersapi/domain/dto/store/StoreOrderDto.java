@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 public class StoreOrderDto implements OrderableDto<StoreProductDto> {
 
+    private Long id;
     private LocalDateTime createdDate;
     private String shopperEmail;
     private String shopperFirstName;

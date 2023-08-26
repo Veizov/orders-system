@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 public class StoreOrder {
 
+    private Long id;
     private LocalDateTime orderDate;
     private String shopperEmail;
     private String shopperFirstName;

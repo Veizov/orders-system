@@ -9,6 +9,7 @@ import org.mapstruct.*;
 public abstract class StoreOrderInitMapper {
 
     @Mapping(target = "storeId", expression = "java(storeId)")
+    @Mapping(target = "order.id", source = "id")
     @Mapping(target = "order.shopperFirstName", source = "shopperFirstName")
     @Mapping(target = "order.shopperLastName", source = "shopperLastName")
     @Mapping(target = "order.shopperEmail", source = "shopperEmail")
