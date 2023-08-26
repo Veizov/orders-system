@@ -1,6 +1,5 @@
 package com.notificationprovider.ordersconsumer.domain.event;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
