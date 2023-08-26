@@ -8,6 +8,5 @@ spring:
 
 kafka:
   order:
-    bootstrap-servers: localhost:9094
     topic:
-      process-order: order.processing
+      initialize-order: orders.initialization

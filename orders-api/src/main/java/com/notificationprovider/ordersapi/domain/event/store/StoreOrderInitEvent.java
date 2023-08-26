@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProcessStoreOrderEvent {
+public class StoreOrderInitEvent {
     private Integer storeId;
     private StoreOrder order;
 }

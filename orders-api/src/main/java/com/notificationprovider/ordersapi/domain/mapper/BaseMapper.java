@@ -5,7 +5,7 @@ import org.mapstruct.InheritInverseConfiguration;
 
 import java.util.List;
 
-public abstract class BaseDtoEventObjectMapper<E, D> {
+public abstract class BaseMapper<E, D> {
 
     public abstract D toDto(E e);
 
