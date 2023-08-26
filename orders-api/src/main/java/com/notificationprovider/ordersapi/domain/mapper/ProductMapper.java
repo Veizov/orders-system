@@ -2,7 +2,6 @@ package com.notificationprovider.ordersapi.domain.mapper;
 
 import com.notificationprovider.ordersapi.domain.dto.ProductDto;
 import com.notificationprovider.ordersapi.domain.event.Product;
-import com.notificationprovider.ordersapi.domain.mapper.BaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

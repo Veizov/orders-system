@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@Api(tags = "Stores")
-@RequestMapping("/v1/")
+@Api(tags = "Orders")
+@RequestMapping("/v1")
 @RequiredArgsConstructor
 public class OrdersController {
 
