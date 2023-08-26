@@ -1,7 +1,8 @@
 package com.notificationprovider.ordersconsumer.listener;
 
-import com.notificationprovider.ordersconsumer.domain.event.PublishedOrderEvent;
+import com.notificationprovider.ordersconsumer.domain.event.PublishedOrder;
 import com.notificationprovider.ordersconsumer.enums.EventType;
+import com.notificationprovider.ordersconsumer.service.CreateOrderService;
 import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.Objects;
 public class PublishedOrdersListener {
 
     private final JsonUtils jsonUtils;
+    private final CreateOrderService createOrderService;
 
     @KafkaListener(
             topics = "#{'${kafka.order.topic.published-order.name}'}",
@@ -32,20 +34,21 @@ public class PublishedOrdersListener {
             @Header("X-Event-Type") String eventType,
             Acknowledgment acknowledgment
     ) {
-        if (!isValidEventType(eventType)) {
+        if (ignoreEvent(eventType)) {
             return;
         }
+
         log.info("[PUBLISHED ORDER] Message received! Event type: {} Offset: {}, Data: {}", eventType, offset, data);
-        PublishedOrderEvent publishedOrder = jsonUtils.readJson(data, PublishedOrderEvent.class);
-        processEvent(publishedOrder);
+        PublishedOrder publishedOrder = jsonUtils.readJson(data, PublishedOrder.class);
+        createOrderService.create(publishedOrder);
         acknowledgment.acknowledge();
     }
 
-    private void processEvent(PublishedOrderEvent publishedOrder) {
-        //TODO Implement processing logic
-    }
-
-    private boolean isValidEventType(String eventType) {
-        return Objects.nonNull(eventType) && eventType.equalsIgnoreCase(EventType.PUBLISHED_ORDER.getCode());
+    private boolean ignoreEvent(String eventType) {
+        if (!(Objects.nonNull(eventType) && eventType.equalsIgnoreCase(EventType.PUBLISHED_ORDER.getCode()))) {
+            return true;
+        }
+        //TODO More checks
+        return false;
     }
 }
