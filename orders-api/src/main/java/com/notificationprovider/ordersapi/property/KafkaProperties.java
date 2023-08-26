@@ -17,6 +17,4 @@ public class KafkaProperties {
     @Value("${kafka.order.bootstrap-servers:#{null}}")
     private String bootstrapServers;
 
-
-
 }
