@@ -9,4 +9,4 @@ spring:
 kafka:
   order:
     topic:
-      initialize-order: orders.initialization
+      published-order: orders.published

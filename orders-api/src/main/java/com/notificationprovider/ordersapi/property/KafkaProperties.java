@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaProperties {
 
-    @Value("${kafka.order.topic.initialize-order:#{null}}")
+    @Value("${kafka.order.topic.published-order:#{null}}")
     private String initOrderTopic;
 
     @Value("${kafka.order.bootstrap-servers:#{null}}")

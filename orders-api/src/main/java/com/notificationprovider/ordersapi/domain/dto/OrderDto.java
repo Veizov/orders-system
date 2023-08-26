@@ -1,6 +1,5 @@
-package com.notificationprovider.ordersapi.domain.dto.store;
+package com.notificationprovider.ordersapi.domain.dto;
 
-import com.notificationprovider.ordersapi.domain.dto.OrderableDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +8,13 @@ import java.util.List;
 
 @Getter
 @Setter
-public class StoreOrderDto implements OrderableDto<StoreProductDto> {
+public class OrderDto implements OrderableDto<ProductDto> {
 
     private Long id;
     private LocalDateTime createdDate;
     private String shopperEmail;
     private String shopperFirstName;
     private String shopperLastName;
-    private List<StoreProductDto> products;
+    private List<ProductDto> products;
 
 }

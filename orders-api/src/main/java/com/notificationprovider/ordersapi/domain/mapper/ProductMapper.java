@@ -1,19 +1,19 @@
-package com.notificationprovider.ordersapi.domain.mapper.store;
+package com.notificationprovider.ordersapi.domain.mapper;
 
-import com.notificationprovider.ordersapi.domain.dto.store.StoreProductDto;
-import com.notificationprovider.ordersapi.domain.event.store.StoreProduct;
+import com.notificationprovider.ordersapi.domain.dto.ProductDto;
+import com.notificationprovider.ordersapi.domain.event.Product;
 import com.notificationprovider.ordersapi.domain.mapper.BaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 
 @Mapper(componentModel = "spring")
-public abstract class StoreProductMapper extends BaseMapper<StoreProduct, StoreProductDto> {
+public abstract class ProductMapper extends BaseMapper<Product, ProductDto> {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "description", source = "description")
     @Mapping(target = "price", source = "price")
     @Mapping(target = "quantity", source = "quantity")
-    public abstract StoreProduct toEventObject(StoreProductDto dto);
+    public abstract Product toEventObject(ProductDto dto);
 }

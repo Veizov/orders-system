@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersapi.domain.event.store;
+package com.notificationprovider.ordersapi.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class StoreProduct {
+public class ProductDto implements SellableDto {
 
     private Integer id;
     private String name;

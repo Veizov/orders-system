@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersapi.domain.event.store;
+package com.notificationprovider.ordersapi.domain.event;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,13 +10,13 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class StoreOrder {
+public class Order {
 
     private Long id;
     private LocalDateTime orderDate;
     private String shopperEmail;
     private String shopperFirstName;
     private String shopperLastName;
-    private List<StoreProduct> products;
+    private List<Product> products;
 
 }

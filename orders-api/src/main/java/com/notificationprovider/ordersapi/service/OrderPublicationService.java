@@ -3,8 +3,8 @@ package com.notificationprovider.ordersapi.service;
 import com.notificationprovider.ordersapi.domain.dto.NotFinishedProcessDto;
 import com.notificationprovider.ordersapi.domain.dto.OrderableDto;
 
-public interface OrderInitializationService<T extends OrderableDto> {
+public interface OrderPublicationService<T extends OrderableDto> {
 
-    NotFinishedProcessDto initializeOrder(T orderDto, Integer id);
+    NotFinishedProcessDto publishOrder(T orderDto, Integer id);
 
 }
