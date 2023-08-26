@@ -19,3 +19,10 @@ orders:
     show_sql: true
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+kafka:
+  order:
+    group: OrdersConsumerGroup-1
+    topic:
+      published-order:
+        name: orders.published
