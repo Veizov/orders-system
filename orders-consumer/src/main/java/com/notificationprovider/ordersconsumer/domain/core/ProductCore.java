@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class CProduct {
+public class ProductCore {
 
     private Long id;
     private Long externalId;

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CStore {
+public class StoreCore {
 
     private String id;
     private String name;

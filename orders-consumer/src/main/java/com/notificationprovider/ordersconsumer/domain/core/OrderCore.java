@@ -8,16 +8,16 @@ import java.util.List;
 
 @Getter
 @Setter
-public class COrder {
+public class OrderCore {
 
     private Long id;
-    private CStore store;
+    private StoreCore store;
     private Long externalId;
     private String shopperEmail;
     private String shopperFirstName;
     private String shopperLastName;
     private LocalDateTime dateCreated;
     private LocalDateTime dateOrdered;
-    private List<CProduct> products;
+    private List<ProductCore> products;
 
 }
