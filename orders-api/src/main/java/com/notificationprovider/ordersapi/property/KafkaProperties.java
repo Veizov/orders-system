@@ -8,10 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaProperties {
 
-    @Value("${kafka.order.topic.published-order:#{null}}")
-    private String initOrderTopic;
+    @Value("${kafka.order.topic.published-order.name:#{null}}")
+    private String publishedOrderTopic;
+
+    @Value("${kafka.order.topic.published-order.partitions-number:#{1}}")
+    private Integer partitionsNumber;
 
     @Value("${kafka.order.bootstrap-servers:#{null}}")
     private String bootstrapServers;
+
+
 
 }

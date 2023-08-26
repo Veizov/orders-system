@@ -25,7 +25,7 @@ public class OrderPublicationProducer {
 
     public EventResult sendEvent(OrderPublicationEvent order) {
         try {
-            String topic = kafkaProperties.getInitOrderTopic();
+            String topic = kafkaProperties.getPublishedOrderTopic();
             String key = MessageKeyUtils.createOrderKey(order.getStoreId());
 
             SendResult<String, OrderPublicationEvent> sendResult = kafkaTemplate

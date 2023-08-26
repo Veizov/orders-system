@@ -9,4 +9,6 @@ spring:
 kafka:
   order:
     topic:
-      published-order: orders.published
+      published-order:
+        name: orders.published
+        partitions-number: 3
