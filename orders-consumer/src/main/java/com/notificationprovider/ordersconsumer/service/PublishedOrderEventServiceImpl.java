@@ -1,5 +1,6 @@
 package com.notificationprovider.ordersconsumer.service;
 
+import com.notificationprovider.ordersconsumer.domain.event.MessageIgnore;
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
 import com.notificationprovider.ordersconsumer.enums.EventType;
@@ -18,7 +19,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderEventsServiceImpl implements OrderEventsService {
+public class PublishedOrderEventServiceImpl implements PublishedOrderEventService {
 
     private final CreatedOrdersProducer createdOrdersProducer;
     private final PublishedOrderMapper publishedOrderMapper;
@@ -33,20 +34,20 @@ public class OrderEventsServiceImpl implements OrderEventsService {
     }
 
     @Override
-    public boolean ignoreMessage(String eventType, String json) {
+    public MessageIgnore ignoreMessage(String eventType, String json) {
         if (!(Objects.nonNull(eventType) && eventType.equalsIgnoreCase(EventType.PUBLISHED_ORDER.getCode()))) {
-            return true;
+            return MessageIgnore.ignore();
         }
 
         PublishedOrder publishedOrder = jsonUtils.readJson(json, PublishedOrder.class);
         Integer storeId = publishedOrder.getStoreId();
         Long externalId = publishedOrder.getId();
         if (!(orderService.isNewOrder(storeId, externalId))) {
-            log.warn("[PUBLISHED ORDER] Message is ignored, because it has already been processed! StoreId: {}, ExternalOrderId: {} ", storeId, externalId);
-            return true;
+            log.warn("[PUBLISHED ORDER] Message is ignored, but will be marked as acknowledged, because it has already been inserted in the database! StoreId: {}, ExternalOrderId: {} ", storeId, externalId);
+            return MessageIgnore.ignoreAndAcknowledge();
         }
 
-        return false;
+        return MessageIgnore.proceed();
     }
 
 }

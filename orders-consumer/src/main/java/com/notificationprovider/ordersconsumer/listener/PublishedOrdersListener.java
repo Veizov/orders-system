@@ -1,7 +1,8 @@
 package com.notificationprovider.ordersconsumer.listener;
 
+import com.notificationprovider.ordersconsumer.domain.event.MessageIgnore;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
-import com.notificationprovider.ordersconsumer.service.OrderEventsService;
+import com.notificationprovider.ordersconsumer.service.PublishedOrderEventService;
 import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class PublishedOrdersListener {
 
     private final JsonUtils jsonUtils;
-    private final OrderEventsService orderEventsService;
+    private final PublishedOrderEventService orderEventsService;
 
     @KafkaListener(
             topics = "#{'${kafka.order.topic.published-order.name}'}",
@@ -31,7 +32,11 @@ public class PublishedOrdersListener {
             @Header("X-Event-Type") String eventType,
             Acknowledgment acknowledgment
     ) {
-        if (orderEventsService.ignoreMessage(eventType, data)) {
+        MessageIgnore messageIgnore = orderEventsService.ignoreMessage(eventType, data);
+        if (messageIgnore.isIgnore()) {
+            if (messageIgnore.isAcknowledge()) {
+                acknowledgment.acknowledge();
+            }
             return;
         }
 

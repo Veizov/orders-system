@@ -1,8 +1,10 @@
 package com.notificationprovider.ordersconsumer.service;
 
 
+import com.notificationprovider.ordersconsumer.domain.event.MessageIgnore;
+
 public interface IgnorableMessageService {
 
-    boolean ignoreMessage(String eventType, String json);
+    MessageIgnore ignoreMessage(String eventType, String json);
 
 }
