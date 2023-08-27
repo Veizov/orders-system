@@ -2,7 +2,7 @@ package com.notificationprovider.ordersconsumer.producer;
 
 import com.notificationprovider.ordersconsumer.domain.event.created.CreatedOrder;
 import com.notificationprovider.ordersconsumer.domain.event.EventResult;
-import com.notificationprovider.ordersconsumer.enums.EventType;
+import com.notificationprovider.ordersconsumer.domain.enums.EventType;
 import com.notificationprovider.ordersconsumer.exception.KafkaSendEventException;
 import com.notificationprovider.ordersconsumer.property.KafkaProperties;
 import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;

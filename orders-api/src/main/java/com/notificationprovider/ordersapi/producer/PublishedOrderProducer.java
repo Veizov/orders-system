@@ -2,7 +2,7 @@ package com.notificationprovider.ordersapi.producer;
 
 import com.notificationprovider.ordersapi.domain.event.EventResult;
 import com.notificationprovider.ordersapi.domain.event.Order;
-import com.notificationprovider.ordersapi.enums.EventType;
+import com.notificationprovider.ordersapi.domain.enums.EventType;
 import com.notificationprovider.ordersapi.exception.KafkaSendEventException;
 import com.notificationprovider.ordersapi.property.KafkaProperties;
 import com.notificationprovider.ordersapi.utils.json.JsonUtils;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderPublicationProducer {
+public class PublishedOrderProducer {
 
     private final KafkaMessageKeyCreator messageKeyCreator;
     private final KafkaMessageCreator<String, Order> messageCreator;
@@ -34,7 +34,7 @@ public class OrderPublicationProducer {
             String key = messageKeyCreator.createOrderKey(order.getStoreId());
             ProducerRecord<String, Order> message = messageCreator.create(topic, key, order, EventType.PUBLISHED_ORDER);
             SendResult<String, Order> sendResult = kafkaTemplate.send(message).get(2L, TimeUnit.SECONDS);
-            log.info("[OrderPublicationEvent] New event has been created!\n {}", jsonUtils.createJson(order));
+            log.info("[PublishedOrderEvent] New event has been created!\n {}", jsonUtils.createJson(order));
             log.info(sendResult.toString());
             return EventResult.newInstance(sendResult.getRecordMetadata());
         } catch (Exception e) {

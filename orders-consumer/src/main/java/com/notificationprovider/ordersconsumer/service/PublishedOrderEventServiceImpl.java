@@ -3,7 +3,7 @@ package com.notificationprovider.ordersconsumer.service;
 import com.notificationprovider.ordersconsumer.domain.event.MessageIgnore;
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
-import com.notificationprovider.ordersconsumer.enums.EventType;
+import com.notificationprovider.ordersconsumer.domain.enums.EventType;
 import com.notificationprovider.ordersconsumer.mapper.created.CreatedOrderMapper;
 import com.notificationprovider.ordersconsumer.mapper.published.PublishedOrderMapper;
 import com.notificationprovider.ordersconsumer.producer.CreatedOrdersProducer;

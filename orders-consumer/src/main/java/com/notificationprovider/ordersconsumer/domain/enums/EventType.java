@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.enums;
+package com.notificationprovider.ordersconsumer.domain.enums;
 
 import lombok.Getter;
 

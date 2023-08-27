@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersapi.domain.mapper;
+package com.notificationprovider.ordersapi.mapper;
 
 import com.notificationprovider.ordersapi.domain.dto.ProductDto;
 import com.notificationprovider.ordersapi.domain.event.Product;

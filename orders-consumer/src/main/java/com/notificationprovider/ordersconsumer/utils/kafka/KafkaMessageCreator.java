@@ -1,6 +1,6 @@
 package com.notificationprovider.ordersconsumer.utils.kafka;
 
-import com.notificationprovider.ordersconsumer.enums.EventType;
+import com.notificationprovider.ordersconsumer.domain.enums.EventType;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.internals.RecordHeader;
