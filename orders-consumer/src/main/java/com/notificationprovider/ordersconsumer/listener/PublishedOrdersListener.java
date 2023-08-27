@@ -1,6 +1,6 @@
 package com.notificationprovider.ordersconsumer.listener;
 
-import com.notificationprovider.ordersconsumer.domain.event.PublishedOrder;
+import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
 import com.notificationprovider.ordersconsumer.enums.EventType;
 import com.notificationprovider.ordersconsumer.service.CreateOrderService;
 import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;

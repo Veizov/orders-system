@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.domain.event;
+package com.notificationprovider.ordersconsumer.domain.event.published;
 
 import lombok.Getter;
 import lombok.Setter;

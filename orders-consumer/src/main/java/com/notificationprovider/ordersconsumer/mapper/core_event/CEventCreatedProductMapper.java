@@ -1,7 +1,7 @@
 package com.notificationprovider.ordersconsumer.mapper.core_event;
 
 import com.notificationprovider.ordersconsumer.domain.core.ProductCore;
-import com.notificationprovider.ordersconsumer.domain.event.CreatedProduct;
+import com.notificationprovider.ordersconsumer.domain.event.created.CreatedProduct;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

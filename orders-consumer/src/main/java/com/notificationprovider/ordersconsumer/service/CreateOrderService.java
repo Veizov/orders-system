@@ -1,7 +1,7 @@
 package com.notificationprovider.ordersconsumer.service;
 
 import com.notificationprovider.ordersconsumer.domain.core.OrderCore;
-import com.notificationprovider.ordersconsumer.domain.event.PublishedOrder;
+import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
 import com.notificationprovider.ordersconsumer.mapper.core_event.CEventCreatedOrderMapper;
 import com.notificationprovider.ordersconsumer.mapper.core_event.CEventPublishedOrderMapper;
 import com.notificationprovider.ordersconsumer.producer.CreatedOrdersProducer;
