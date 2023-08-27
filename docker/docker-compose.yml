@@ -57,3 +57,14 @@ services:
       - "SPRING_PROFILES_ACTIVE=${SPRING_APPS_ACTIVE_PROFILE}"
     depends_on:
       - kafka
+  orders-consumer:
+    build: ../orders-consumer
+    image: orders-consumer:latest
+    container_name: orders-consumer
+    ports:
+      - "8081:8081"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=${SPRING_APPS_ACTIVE_PROFILE}"
+    depends_on:
+      - postgres
+      - orders-api

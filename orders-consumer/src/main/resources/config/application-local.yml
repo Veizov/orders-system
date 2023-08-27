@@ -1,3 +1,9 @@
 kafka:
   order:
     bootstrap-servers: localhost:9094
+
+orders:
+  datasource:
+    jdbcUrl: jdbc:postgresql://localhost:5437/orders_system
+    username: postgres
+    password: postgres
