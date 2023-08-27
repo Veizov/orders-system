@@ -6,7 +6,7 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - "${ZOOKEEPER_DATA_PATH}:/bitnami"
+      - "${VOLUME_ZOOKEEPER_PATH}:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
@@ -15,7 +15,7 @@ services:
     ports:
       - '9094:9094'
     volumes:
-      - "${KAFKA_DATA_PATH}:/bitnami"
+      - "${VOLUME_KAFKA_PATH}:/bitnami"
     environment:
         - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
         - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
@@ -41,7 +41,7 @@ services:
     ports:
       - "5437:5432"
     volumes:
-      - "${POSTGRES_DATA_PATH}:/var/lib/postgresql/data"
+      - "${VOLUME_POSTGRES_PATH}:/var/lib/postgresql/data"
       - "./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql"
     environment:
       POSTGRES_DB: orders_system
