@@ -1,6 +1,6 @@
 package com.notificationprovider.ordersapi.domain.event;
 
-import com.notificationprovider.ordersapi.utils.date.TimestampUtils;
+import com.notificationprovider.ordersapi.utils.date.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +19,6 @@ public class EventResult {
     private LocalDateTime createdDate;
 
     public static EventResult newInstance(RecordMetadata recordMetadata) {
-        return newInstance(recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(), TimestampUtils.toLocalDateTime(recordMetadata.timestamp()));
+        return newInstance(recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(), TimestampConverter.toLocalDateTime(recordMetadata.timestamp()));
     }
 }
