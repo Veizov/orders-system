@@ -1,6 +1,6 @@
-package com.notificationprovider.ordersconsumer.mapper.core_event;
+package com.notificationprovider.ordersconsumer.mapper.published;
 
-import com.notificationprovider.ordersconsumer.domain.core.ProductCore;
+import com.notificationprovider.ordersconsumer.domain.event.Product;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedProduct;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 
 @Mapper(componentModel = "spring")
-public abstract class CEventPublishedProductMapper {
+public abstract class PublishedProductMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "externalId", source = "id")
@@ -16,6 +16,6 @@ public abstract class CEventPublishedProductMapper {
     @Mapping(target = "description", source = "description")
     @Mapping(target = "price", source = "price")
     @Mapping(target = "quantity", source = "quantity")
-    public abstract ProductCore toCore(PublishedProduct eventObject);
+    public abstract Product toProduct(PublishedProduct publishedProduct);
 
 }

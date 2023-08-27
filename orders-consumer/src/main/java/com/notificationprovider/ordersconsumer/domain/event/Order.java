@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.domain.core;
+package com.notificationprovider.ordersconsumer.domain.event;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,16 +8,16 @@ import java.util.List;
 
 @Getter
 @Setter
-public class OrderCore {
+public class Order {
 
     private Long id;
-    private StoreCore store;
+    private Store store;
     private Long externalId;
     private String shopperEmail;
     private String shopperFirstName;
     private String shopperLastName;
     private LocalDateTime dateCreated;
     private LocalDateTime dateOrdered;
-    private List<ProductCore> products;
+    private List<Product> products;
 
 }

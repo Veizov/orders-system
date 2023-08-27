@@ -1,6 +1,6 @@
-package com.notificationprovider.ordersconsumer.mapper.core_entity;
+package com.notificationprovider.ordersconsumer.mapper;
 
-import com.notificationprovider.ordersconsumer.domain.core.OrderCore;
+import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.entity.OrderEntity;
 import com.notificationprovider.ordersconsumer.domain.entity.ProductEntity;
 import org.mapstruct.AfterMapping;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Mapper(componentModel = "spring", uses = {StoreCoreToEntityMapper.class, ProductCoreToEntityMapper.class})
-public abstract class OrderCoreToEntityMapper extends BaseCoreToEntityMapper<OrderEntity, OrderCore> {
+@Mapper(componentModel = "spring", uses = {StoreMapper.class, ProductMapper.class})
+public abstract class OrderMapper extends BaseMapper<OrderEntity, Order> {
 
     @AfterMapping
-    public void afterToEntity(OrderCore source, @MappingTarget OrderEntity target) {
+    public void afterToEntity(Order source, @MappingTarget OrderEntity target) {
         setProductsData(target);
         setCreatedDate(target);
     }

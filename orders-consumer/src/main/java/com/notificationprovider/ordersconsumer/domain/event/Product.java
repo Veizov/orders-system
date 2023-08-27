@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.domain.core;
+package com.notificationprovider.ordersconsumer.domain.event;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ProductCore {
+public class Product {
 
     private Long id;
     private Long externalId;

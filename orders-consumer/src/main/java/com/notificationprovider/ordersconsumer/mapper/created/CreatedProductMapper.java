@@ -1,13 +1,13 @@
-package com.notificationprovider.ordersconsumer.mapper.core_event;
+package com.notificationprovider.ordersconsumer.mapper.created;
 
-import com.notificationprovider.ordersconsumer.domain.core.ProductCore;
+import com.notificationprovider.ordersconsumer.domain.event.Product;
 import com.notificationprovider.ordersconsumer.domain.event.created.CreatedProduct;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {CEventCreatedProductMapper.class})
-public abstract class CEventCreatedProductMapper {
+@Mapper(componentModel = "spring")
+public abstract class CreatedProductMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "databaseId", source = "id")
@@ -16,6 +16,6 @@ public abstract class CEventCreatedProductMapper {
     @Mapping(target = "description", source = "description")
     @Mapping(target = "price", source = "price")
     @Mapping(target = "quantity", source = "quantity")
-    public abstract CreatedProduct toEventObject(ProductCore productCore);
+    public abstract CreatedProduct toCreatedProduct(Product product);
 
 }

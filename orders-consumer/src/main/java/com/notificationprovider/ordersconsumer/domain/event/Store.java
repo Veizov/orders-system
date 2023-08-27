@@ -1,11 +1,11 @@
-package com.notificationprovider.ordersconsumer.domain.core;
+package com.notificationprovider.ordersconsumer.domain.event;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class StoreCore {
+public class Store {
 
     private Integer id;
     private String name;

@@ -1,12 +1,12 @@
 package com.notificationprovider.ordersconsumer.service.db;
 
-public interface CrudService<C, I> {
+public interface CrudService<E, I> {
 
-    C selectById(I id);
+    E selectById(I id);
 
-    C create(C core);
+    E create(E eventObject);
 
-    C update(C core);
+    E update(E eventObject);
 
     void delete(I id);
 

@@ -1,8 +1,8 @@
 package com.notificationprovider.ordersconsumer.service.db;
 
-import com.notificationprovider.ordersconsumer.domain.core.OrderCore;
+import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.entity.OrderEntity;
-import com.notificationprovider.ordersconsumer.mapper.core_entity.OrderCoreToEntityMapper;
+import com.notificationprovider.ordersconsumer.mapper.OrderMapper;
 import com.notificationprovider.ordersconsumer.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,35 +15,35 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class OrderCrudService implements CrudService<OrderCore, Long> {
+public class OrderCrudService implements CrudService<Order, Long> {
 
     private final OrderRepository repository;
-    private final OrderCoreToEntityMapper mapper;
+    private final OrderMapper mapper;
 
     @Override
-    public OrderCore selectById(Long id) {
+    public Order selectById(Long id) {
         if (Objects.isNull(id)) {
             return null;
         }
 
         OrderEntity entity = repository.findById(id).orElse(null);
-        return mapper.toCore(entity);
+        return mapper.toEventObject(entity);
     }
 
     @Override
     @Transactional
-    public OrderCore create(OrderCore order) {
+    public Order create(Order order) {
         //TODO Validator
         OrderEntity entity = mapper.toEntity(order);
-        return mapper.toCore(repository.save(entity));
+        return mapper.toEventObject(repository.save(entity));
     }
 
     @Override
     @Transactional
-    public OrderCore update(OrderCore order) {
+    public Order update(Order order) {
         //TODO Validator
         OrderEntity entity = mapper.toEntity(order);
-        return mapper.toCore(repository.save(entity));
+        return mapper.toEventObject(repository.save(entity));
     }
 
     @Override

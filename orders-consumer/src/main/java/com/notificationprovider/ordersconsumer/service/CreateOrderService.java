@@ -1,9 +1,9 @@
 package com.notificationprovider.ordersconsumer.service;
 
-import com.notificationprovider.ordersconsumer.domain.core.OrderCore;
+import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
-import com.notificationprovider.ordersconsumer.mapper.core_event.CEventCreatedOrderMapper;
-import com.notificationprovider.ordersconsumer.mapper.core_event.CEventPublishedOrderMapper;
+import com.notificationprovider.ordersconsumer.mapper.created.CreatedOrderMapper;
+import com.notificationprovider.ordersconsumer.mapper.published.PublishedOrderMapper;
 import com.notificationprovider.ordersconsumer.producer.CreatedOrdersProducer;
 import com.notificationprovider.ordersconsumer.service.db.OrderCrudService;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateOrderService {
 
     private final CreatedOrdersProducer createdOrdersProducer;
-    private final CEventPublishedOrderMapper publishedOrderMapper;
-    private final CEventCreatedOrderMapper createdOrderMapper;
+    private final PublishedOrderMapper publishedOrderMapper;
+    private final CreatedOrderMapper createdOrderMapper;
     private final OrderCrudService orderCrudService;
 
     @Transactional
     public void create(PublishedOrder publishedOrder) {
-        OrderCore savedOrder = orderCrudService.create(publishedOrderMapper.toCore(publishedOrder));
-        createdOrdersProducer.sendEvent(createdOrderMapper.toEventObject(savedOrder));
+        Order savedOrder = orderCrudService.create(publishedOrderMapper.toOrder(publishedOrder));
+        createdOrdersProducer.sendEvent(createdOrderMapper.toCreatedOrder(savedOrder));
     }
 
 }

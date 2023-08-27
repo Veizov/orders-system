@@ -1,6 +1,6 @@
-package com.notificationprovider.ordersconsumer.mapper.core_event;
+package com.notificationprovider.ordersconsumer.mapper.created;
 
-import com.notificationprovider.ordersconsumer.domain.core.OrderCore;
+import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.event.created.CreatedOrder;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 //TODO Products and store data
 @Mapper(componentModel = "spring")
-public abstract class CEventCreatedOrderMapper {
+public abstract class CreatedOrderMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "databaseId", source = "id")
@@ -20,6 +20,6 @@ public abstract class CEventCreatedOrderMapper {
     @Mapping(target = "dateCreated", source = "dateCreated")
     @Mapping(target = "dateOrdered", source = "dateOrdered")
     @Mapping(target = "products", source = "products")
-    public abstract CreatedOrder toEventObject(OrderCore coreOrder);
+    public abstract CreatedOrder toCreatedOrder(Order order);
 
 }
