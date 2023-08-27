@@ -8,7 +8,7 @@ import com.notificationprovider.ordersconsumer.domain.mapper.created.CreatedOrde
 import com.notificationprovider.ordersconsumer.domain.mapper.published.PublishedOrderMapper;
 import com.notificationprovider.ordersconsumer.producer.CreatedOrdersProducer;
 import com.notificationprovider.ordersconsumer.service.db.OrderService;
-import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;
+import com.notificationprovider.ordersconsumer.utils.json.JsonManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,6 @@ public class PublishedOrderEventServiceImpl implements PublishedOrderEventServic
     private final PublishedOrderMapper publishedOrderMapper;
     private final CreatedOrderMapper createdOrderMapper;
     private final OrderService orderService;
-    private final JsonUtils jsonUtils;
 
     @Transactional
     public void create(PublishedOrder publishedOrder) {
@@ -39,7 +38,7 @@ public class PublishedOrderEventServiceImpl implements PublishedOrderEventServic
             return MessageIgnore.ignore();
         }
 
-        PublishedOrder publishedOrder = jsonUtils.readJson(json, PublishedOrder.class);
+        PublishedOrder publishedOrder = JsonManager.readJson(json, PublishedOrder.class);
         Integer storeId = publishedOrder.getStoreId();
         Long externalId = publishedOrder.getId();
         if (!(orderService.isNewOrder(storeId, externalId))) {

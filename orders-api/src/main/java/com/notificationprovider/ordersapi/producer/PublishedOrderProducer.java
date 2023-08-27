@@ -5,7 +5,7 @@ import com.notificationprovider.ordersapi.domain.event.Order;
 import com.notificationprovider.ordersapi.domain.enums.EventType;
 import com.notificationprovider.ordersapi.exception.KafkaSendEventException;
 import com.notificationprovider.ordersapi.property.KafkaProperties;
-import com.notificationprovider.ordersapi.utils.json.JsonUtils;
+import com.notificationprovider.ordersapi.utils.json.JsonManager;
 import com.notificationprovider.ordersapi.utils.kafka.KafkaMessageCreator;
 import com.notificationprovider.ordersapi.utils.kafka.KafkaMessageKeyCreator;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,6 @@ public class PublishedOrderProducer {
     private final KafkaMessageCreator<String, Order> messageCreator;
     private final KafkaTemplate<String, Order> kafkaTemplate;
     private final KafkaProperties kafkaProperties;
-    private final JsonUtils jsonUtils;
 
     public EventResult sendEvent(Order order) {
         try {
@@ -34,7 +33,7 @@ public class PublishedOrderProducer {
             String key = messageKeyCreator.createOrderKey(order.getStoreId());
             ProducerRecord<String, Order> message = messageCreator.create(topic, key, order, EventType.PUBLISHED_ORDER);
             SendResult<String, Order> sendResult = kafkaTemplate.send(message).get(2L, TimeUnit.SECONDS);
-            log.info("[PublishedOrderEvent] New event has been created!\n {}", jsonUtils.createJson(order));
+            log.info("[PublishedOrderEvent] New event has been created!\n {}", JsonManager.createJson(order));
             log.info(sendResult.toString());
             return EventResult.newInstance(sendResult.getRecordMetadata());
         } catch (Exception e) {
