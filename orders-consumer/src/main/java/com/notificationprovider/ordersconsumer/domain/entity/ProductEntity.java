@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Cacheable(value = false)
 @Table(name = "product", schema = "orders")

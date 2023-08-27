@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Cacheable(value = false)
 @Table(name = "order", schema = "orders")
