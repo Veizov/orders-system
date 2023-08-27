@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersapi.mapper;
+package com.notificationprovider.ordersapi.domain.mapper;
 
 import com.notificationprovider.ordersapi.domain.dto.NotFinishedProcessDto;
 import com.notificationprovider.ordersapi.domain.event.EventResult;

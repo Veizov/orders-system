@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.mapper.created;
+package com.notificationprovider.ordersconsumer.domain.mapper.created;
 
 import com.notificationprovider.ordersconsumer.domain.event.Product;
 import com.notificationprovider.ordersconsumer.domain.event.created.CreatedProduct;

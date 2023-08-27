@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.mapper;
+package com.notificationprovider.ordersconsumer.domain.mapper;
 
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.entity.OrderEntity;

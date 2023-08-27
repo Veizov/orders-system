@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersconsumer.mapper.published;
+package com.notificationprovider.ordersconsumer.domain.mapper.published;
 
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;

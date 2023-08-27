@@ -2,7 +2,7 @@ package com.notificationprovider.ordersconsumer.service.db;
 
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.entity.OrderEntity;
-import com.notificationprovider.ordersconsumer.mapper.OrderMapper;
+import com.notificationprovider.ordersconsumer.domain.mapper.OrderMapper;
 import com.notificationprovider.ordersconsumer.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.notificationprovider.ordersapi.mapper;
+package com.notificationprovider.ordersapi.domain.mapper;
 
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
