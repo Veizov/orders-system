@@ -3,6 +3,9 @@ package com.notificationprovider.ordersconsumer.service.db;
 import com.notificationprovider.ordersconsumer.domain.event.Order;
 import com.notificationprovider.ordersconsumer.domain.entity.OrderEntity;
 import com.notificationprovider.ordersconsumer.domain.mapper.OrderMapper;
+import com.notificationprovider.ordersconsumer.exception.DeleteRecordException;
+import com.notificationprovider.ordersconsumer.exception.InsertRecordException;
+import com.notificationprovider.ordersconsumer.exception.UpdateRecordException;
 import com.notificationprovider.ordersconsumer.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,17 +38,40 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Order insert(Order order) {
-        //TODO Validator
-        OrderEntity entity = mapper.toEntity(order);
-        return mapper.toEventObject(repository.save(entity));
+        if (Objects.isNull(order)) {
+            throw new InsertRecordException("Object for insertion is empty !");
+        }
+        if (Objects.nonNull(order.getId())) {
+            throw new InsertRecordException("Identifier should be empty !");
+        }
+
+        try {
+            OrderEntity entity = mapper.toEntity(order);
+            return mapper.toEventObject(repository.save(entity));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new InsertRecordException(e.getMessage(), e);
+        }
+
     }
 
     @Override
     @Transactional
     public Order update(Order order) {
-        //TODO Validator
-        OrderEntity entity = mapper.toEntity(order);
-        return mapper.toEventObject(repository.save(entity));
+        if (Objects.isNull(order)) {
+            throw new UpdateRecordException("Object for update is empty !");
+        }
+        if (Objects.nonNull(order.getId())) {
+            throw new UpdateRecordException("Identifier should NOT be empty !");
+        }
+
+        try {
+            OrderEntity entity = mapper.toEntity(order);
+            return mapper.toEventObject(repository.save(entity));
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new UpdateRecordException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -55,7 +81,12 @@ public class OrderServiceImpl implements OrderService {
             return;
         }
 
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new DeleteRecordException(e.getMessage(), e);
+        }
     }
 
     @Override
