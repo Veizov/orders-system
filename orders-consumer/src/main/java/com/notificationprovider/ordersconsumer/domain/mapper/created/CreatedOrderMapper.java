@@ -12,12 +12,12 @@ public abstract class CreatedOrderMapper {
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "databaseId", source = "id")
     @Mapping(target = "externalId", source = "externalId")
-    @Mapping(target = "storeId", source = "store.id")
     @Mapping(target = "shopperEmail", source = "shopperEmail")
     @Mapping(target = "shopperFirstName", source = "shopperFirstName")
     @Mapping(target = "shopperLastName", source = "shopperLastName")
     @Mapping(target = "dateCreated", source = "dateCreated")
     @Mapping(target = "dateOrdered", source = "dateOrdered")
+    @Mapping(target = "store", source = "store")
     @Mapping(target = "products", source = "products")
     public abstract CreatedOrder toCreatedOrder(Order order);
 

@@ -30,7 +30,7 @@ public class CreatedOrdersProducer {
     public EventResult sendEvent(CreatedOrder order) {
         try {
             String topic = kafkaProperties.getCreatedOrderTopic();
-            String key = messageKeyCreator.createOrderKey(order.getStoreId());
+            String key = messageKeyCreator.createOrderKey(order.getStore().getId());
             ProducerRecord<String, CreatedOrder> message = messageCreator.create(topic, key, order, EventType.CREATED_ORDER);
             SendResult<String, CreatedOrder> sendResult = kafkaTemplate.send(message).get(2L, TimeUnit.SECONDS);
             log.info("[CreatedOrderEvent] New event has been created!\n {}", JsonManager.createJson(order));
