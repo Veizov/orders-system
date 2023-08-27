@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum EventType {
-    PUBLISHED_ORDER("orders/published");
+    PUBLISHED_ORDER("orders/published"),
+    CREATED_ORDER("orders/created");
 
     private final String code;
 

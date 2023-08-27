@@ -15,7 +15,7 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class OrderService implements CrudService<OrderCore, Long> {
+public class OrderCrudService implements CrudService<OrderCore, Long> {
 
     private final OrderRepository repository;
     private final OrderCoreToEntityMapper mapper;

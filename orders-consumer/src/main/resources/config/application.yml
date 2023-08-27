@@ -25,3 +25,5 @@ kafka:
     topic:
       published-order:
         name: orders.published
+      created-order:
+        name: orders.created

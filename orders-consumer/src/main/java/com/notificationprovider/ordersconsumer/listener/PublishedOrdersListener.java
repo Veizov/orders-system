@@ -39,8 +39,7 @@ public class PublishedOrdersListener {
         }
 
         log.info("[PUBLISHED ORDER] Message received! Event type: {} Offset: {}, Data: {}", eventType, offset, data);
-        PublishedOrder publishedOrder = jsonUtils.readJson(data, PublishedOrder.class);
-        createOrderService.create(publishedOrder);
+        createOrderService.create(jsonUtils.readJson(data, PublishedOrder.class));
         acknowledgment.acknowledge();
     }
 

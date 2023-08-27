@@ -14,4 +14,7 @@ public class KafkaProperties {
     @Value("${kafka.order.group:#{null}}")
     private String orderGroupId;
 
+    @Value("${kafka.order.topic.created-order.name:#{null}}")
+    private String createdOrderTopic;
+
 }
