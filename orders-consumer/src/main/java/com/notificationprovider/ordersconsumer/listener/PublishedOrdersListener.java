@@ -12,8 +12,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -21,8 +19,6 @@ public class PublishedOrdersListener {
 
     private final JsonUtils jsonUtils;
     private final OrderEventsService orderEventsService;
-
-    private final Function<String, PublishedOrder> convertData = json -> jsonUtils.readJson(json, PublishedOrder.class);
 
     @KafkaListener(
             topics = "#{'${kafka.order.topic.published-order.name}'}",
@@ -40,7 +36,8 @@ public class PublishedOrdersListener {
         }
 
         log.info("[PUBLISHED ORDER] Message received! Event type: {} Offset: {}, Data: {}", eventType, offset, data);
-        orderEventsService.create(convertData.apply(data));
+        PublishedOrder publishedOrder = jsonUtils.readJson(data, PublishedOrder.class);
+        orderEventsService.create(publishedOrder);
         acknowledgment.acknowledge();
     }
 
