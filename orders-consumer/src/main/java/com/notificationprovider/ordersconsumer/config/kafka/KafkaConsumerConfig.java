@@ -18,7 +18,7 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 @RequiredArgsConstructor
-public class OrdersConsumerConfig {
+public class KafkaConsumerConfig {
 
     private final KafkaProperties kafkaProperties;
 

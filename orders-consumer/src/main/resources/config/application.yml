@@ -27,3 +27,4 @@ kafka:
         name: orders.published
       created-order:
         name: orders.created
+        partitions-number: 3

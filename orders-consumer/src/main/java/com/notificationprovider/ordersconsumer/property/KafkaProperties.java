@@ -17,4 +17,7 @@ public class KafkaProperties {
     @Value("${kafka.order.topic.created-order.name:#{null}}")
     private String createdOrderTopic;
 
+    @Value("${kafka.order.topic.created-order.partitions-number:#{1}}")
+    private Integer createdOrderTopicPartitions;
+
 }
