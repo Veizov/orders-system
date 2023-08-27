@@ -4,7 +4,7 @@ public interface CrudService<E, I> {
 
     E selectById(I id);
 
-    E create(E eventObject);
+    E insert(E eventObject);
 
     E update(E eventObject);
 

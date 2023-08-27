@@ -8,14 +8,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class OrderCrudService implements CrudService<Order, Long> {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository repository;
     private final OrderMapper mapper;
@@ -32,7 +34,7 @@ public class OrderCrudService implements CrudService<Order, Long> {
 
     @Override
     @Transactional
-    public Order create(Order order) {
+    public Order insert(Order order) {
         //TODO Validator
         OrderEntity entity = mapper.toEntity(order);
         return mapper.toEventObject(repository.save(entity));
@@ -56,4 +58,13 @@ public class OrderCrudService implements CrudService<Order, Long> {
         repository.deleteById(id);
     }
 
+    @Override
+    public boolean isNewOrder(Integer storeId, Long externalId) {
+        if (Objects.isNull(storeId) || Objects.isNull(externalId)) {
+            return true;
+        }
+
+        List<OrderEntity> entities = repository.selectByStoreIdAndExternalId(storeId, externalId);
+        return CollectionUtils.isEmpty(entities);
+    }
 }

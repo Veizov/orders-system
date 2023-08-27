@@ -6,8 +6,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-//TODO Products and store data
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {CreatedProductMapper.class, CreatedStoreMapper.class})
 public abstract class CreatedOrderMapper {
 
     @BeanMapping(ignoreByDefault = true)

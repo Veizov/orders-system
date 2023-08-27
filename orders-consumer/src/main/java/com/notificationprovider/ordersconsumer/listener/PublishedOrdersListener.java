@@ -1,8 +1,7 @@
 package com.notificationprovider.ordersconsumer.listener;
 
 import com.notificationprovider.ordersconsumer.domain.event.published.PublishedOrder;
-import com.notificationprovider.ordersconsumer.enums.EventType;
-import com.notificationprovider.ordersconsumer.service.CreateOrderService;
+import com.notificationprovider.ordersconsumer.service.OrderEventsService;
 import com.notificationprovider.ordersconsumer.utils.json.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
+import java.util.function.Function;
 
 @Slf4j
 @Component
@@ -21,7 +20,9 @@ import java.util.Objects;
 public class PublishedOrdersListener {
 
     private final JsonUtils jsonUtils;
-    private final CreateOrderService createOrderService;
+    private final OrderEventsService orderEventsService;
+
+    private final Function<String, PublishedOrder> convertData = json -> jsonUtils.readJson(json, PublishedOrder.class);
 
     @KafkaListener(
             topics = "#{'${kafka.order.topic.published-order.name}'}",
@@ -34,20 +35,13 @@ public class PublishedOrdersListener {
             @Header("X-Event-Type") String eventType,
             Acknowledgment acknowledgment
     ) {
-        if (ignoreEvent(eventType)) {
+        if (orderEventsService.ignoreMessage(eventType, data)) {
             return;
         }
 
         log.info("[PUBLISHED ORDER] Message received! Event type: {} Offset: {}, Data: {}", eventType, offset, data);
-        createOrderService.create(jsonUtils.readJson(data, PublishedOrder.class));
+        orderEventsService.create(convertData.apply(data));
         acknowledgment.acknowledge();
     }
 
-    private boolean ignoreEvent(String eventType) {
-        if (!(Objects.nonNull(eventType) && eventType.equalsIgnoreCase(EventType.PUBLISHED_ORDER.getCode()))) {
-            return true;
-        }
-        //TODO More checks
-        return false;
-    }
 }
