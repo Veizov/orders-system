@@ -13,8 +13,11 @@ with [Docker](https://www.docker.com/), please follow these steps:
 
 1. Checkout the repository
 2. Go in the **/docker/scripts** directory and execute the **up-all.sh** script
+   
 
-   sh up-all.sh
+
+    sh up-all.sh
+
 
 Executing the **up-all.sh** script will build and start all application modules as a docker containers. Containers will
 be started in the docker default bridge network and will use the docker default volumes configured in the *
