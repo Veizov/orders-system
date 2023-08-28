@@ -68,3 +68,12 @@ services:
     depends_on:
       - postgres
       - orders-api
+
+#Default volumes
+volumes:
+  kafka:
+    driver: local
+  zookeeper:
+    driver: local
+  postgres:
+    driver: local
