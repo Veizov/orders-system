@@ -82,6 +82,10 @@ order registration.
 ---------|-----------------------|-----------------------------------|
  POST	   | /v1/{storeId}/orders	 | Register new order in the system	 
 
+- Swagger - Swagger is available on ../swagger-ui/ path
+
+  Example:  http://localhost:8080/orders-api/swagger-ui/
+
 Example request data:
 
 ```json
