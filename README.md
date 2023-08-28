@@ -44,6 +44,22 @@ be 6 running containers under the **orders-system** wrapper:
     - Port (Host) - 8081
     - Port (Docker) - 8081
 
+#### Applications access (default configuration):
+- orders-api 
+   - (Base) http://localhost:8080/orders-api
+   - (Swagger) http://localhost:8080/orders-api/swagger-ui/
+
+- orders-consumer 
+  - (Base) http://localhost:8081/orders-consumer
+
+- orders-system-db
+  - jdbc:postgresql://localhost:5437/orders_system
+  - user: postgres
+  - password: postgres
+
+- kafka-ui
+  - (Base) http://localhost:8055
+
 ****
 
 ## Scripts
